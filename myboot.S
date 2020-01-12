@@ -43,3 +43,35 @@ _start:
 halt:
 	wfe
 	b halt
+
+.globl delay
+.p2align 2
+.type delay, %function
+delay:
+	.fnstart
+	mov r5, #0
+delay_loop:
+	add r5, r5, #1
+	cmp r0, r5
+	ble delay_loop
+	bx lr
+	.fnend
+	
+
+.globl abort
+.type abort, %function
+	.fnstart
+ender_loop:
+	wfe
+	b ender_loop
+	bx lr
+	.fnend
+
+
+
+
+
+
+
+
+

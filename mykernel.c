@@ -2,7 +2,7 @@
 #include <stdint.h>
  
 // board type, raspi2
-int raspi = 2;
+const int raspi = 2;
  
 // Memory-Mapped I/O output
 static inline void mmio_write(uint32_t reg, uint32_t data)
@@ -17,16 +17,26 @@ static inline uint32_t mmio_read(uint32_t reg)
 }
  
 // Loop <delay> times in a way that the compiler won't optimize away
-static inline void delay(int32_t count)
+#ifdef __cplusplus
+extern "C"
+#else
+extern
+#endif 
+void delay(int count);
+
+void memcpy()
 {
-	asm volatile("__delay_%=: subs %[count], %[count], #1; bne __delay_%=\n"
-		 : "=r"(count): [count]"0"(count) : "cc");
+
+}
+
+void abort()
+{
 }
  
 enum
 {
     // The GPIO registers base address.
-    GPIO_BASE = 0x20200000,
+    GPIO_BASE = 0x20200000,  // for raspi1, raspi zero etc.
  
     // The offsets for reach register.
  
