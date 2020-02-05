@@ -1,0 +1,11 @@
+## This config.txt file is going to be built from scratch, I'm not going to enable everything just for the sake of having it enabled. 
+## I'll only be enabling things as they catch my attention, or as a tutorial describes
+
+## Set HDMI safe Mode for good compatibility options
+hdmi_safe=1
+
+## Load kernel to address 0? (https://github.com/s-matyukevich/raspberry-pi-os/blob/master/docs/lesson01/rpi-os.md)
+## Not how the OSDev Wiki handles it, but may be a good option to avoid complications later on...
+#kernel_old=1
+
+

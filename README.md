@@ -10,3 +10,15 @@ First, set up your cross compilers. You need two, one with the target "arm-none-
 
 ## Install
 I'll let you know when I get that far.
+
+Notes:
++ The boot partition should be formatted to fat32
++ If a "Proper" itteration of the kernel.img is not available, a newer raspi can generally run an older kernel.img version, it just won't benefit from newer hardware options (such as 64 bit mode)
+
+
+
+## If you find this git page a little lacking; 
+That's the point. It's a jumping off point. If you want to continue with Raspi OS Design I want to recommend https://github.com/s-matyukevich/raspberry-pi-os as an interesting tutorial site.
+
+# Ultimate goal: 
+There is none. This is a hobbyOS. It's a point of study, and as such I will always try to provide resources to sites that influence changes that I make to the base-point. 
