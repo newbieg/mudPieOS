@@ -22,7 +22,19 @@ static inline void delay(int32_t count)
 	asm volatile("__delay_%=: subs %[count], %[count], #1; bne __delay_%=\n"
 		 : "=r"(count): [count]"0"(count) : "cc");
 }
+
+// Dummy functions, to be defined later
+void* memcpy(void * dest, const void * src, size_t length)
+{
+	return NULL;
+}
+
+void abort(void)
+{
+
+}
  
+
 enum
 {
     // The GPIO registers base address.

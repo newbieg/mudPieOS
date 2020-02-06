@@ -1,8 +1,11 @@
-// AArch32 mode (Pi A, B, A+, B+, Zero)
-// save final output as kernel.img
-// Initial source: https://wiki.osdev.org/Raspberry_Pi_Bare_Bones
+// AArch32 mode. Raspi Versions 3 and 4
+// I do not own 3 or 4 for testing, so this file will go unmodified for a while.
+// Key Source:  https://wiki.osdev.org/Raspberry_Pi_Bare_Bones 
+ 
+// To keep this in the first portion of the binary.
 .section ".text.boot"
  
+// Make _start global.
 .globl _start
  
         .org 0x8000
@@ -13,8 +16,15 @@
 // r2 -> 0x00000100 - start of ATAGS
 // preserve these registers as argument for kernel_main
 _start:
+	// Shut off extra cores
+	mrc p15, 0, r5, c0, c0, 5
+	and r5, r5, #3
+	cmp r5, #0
+	bne halt
+ 
 	// Setup the stack.
-	mov sp, #0x8000
+	ldr r5, =_start
+	mov sp, r5
  
 	// Clear out bss.
 	ldr r4, =__bss_start
@@ -42,35 +52,3 @@ _start:
 halt:
 	wfe
 	b halt
-
-.globl delay
-.p2align 2
-.type delay, %function
-delay:
-	.fnstart
-	mov r5, #0
-delay_loop:
-	add r5, r5, #1
-	cmp r0, r5
-	ble delay_loop
-	bx lr
-	.fnend
-	
-
-.globl abort
-.type abort, %function
-	.fnstart
-ender_loop:
-	wfe
-	b ender_loop
-	bx lr
-	.fnend
-
-
-
-
-
-
-
-
-
