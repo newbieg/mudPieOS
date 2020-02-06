@@ -1,4 +1,4 @@
-all: pi pi2 
+all: pi pi2 pi4
 
 pi:
 	#building kernel for pi A, B, A+, B+, Zero
